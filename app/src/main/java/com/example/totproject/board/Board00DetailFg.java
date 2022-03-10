@@ -44,10 +44,10 @@ public class Board00DetailFg extends Fragment {
 
     LinearLayout board_user_detail_linear_update, board_user_detail_linear_delete, board_user_detail_linear_like;
     LinearLayout board_user_detail_layout_replybar;
-    RelativeLayout board_user_detail_layout_ismine;
+    RelativeLayout board_user_detail_layout_ismine, board_user_detail_relative_reply;
 
     ImageView board_user_detail_imgv_profile, board_user_detail_img_reply_submit, board_user_detail_img_like;
-    TextView board_user_detail_tv_member_id, board_user_detail_tv_replycnt, board_user_detail_tv_like_cnt;
+    TextView board_user_detail_tv_member_id, board_user_detail_tv_replycnt, board_user_detail_tv_like_cnt, board_user_detail_tv_board_date_create,board_user_detail_tv_board_class;
     EditText board_user_detail_edt_board_title, board_user_detail_edt_board_content;
     Button board_act_btn_left, board_act_btn_right;
     EditText board_user_detail_edt_reply_input;
@@ -100,7 +100,7 @@ public class Board00DetailFg extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.boardtab_frag_detail, container, false);
         String pageMode = null;
-        /* ================ 페이지모드 구분 ( 글상세보기 / 글쓰기 / 수정) ================= */
+        /* ================ 페이지모드 구분 ( 글보기 / 글쓰기 / 수정) ================= */
         if (whatCase == null) {
             pageMode = "detailView";
         } else if (whatCase.equals("write")) {
@@ -121,12 +121,15 @@ public class Board00DetailFg extends Fragment {
         board_user_detail_edt_board_content = v.findViewById(R.id.board_user_detail_edt_board_content);
         board_user_detail_tv_replycnt = v.findViewById(R.id.board_user_detail_tv_replycnt);
         board_user_detail_tv_member_id = v.findViewById(R.id.board_user_detail_tv_member_id);
-        board_user_detail_tv_member_id.setText(vo.getMember_id());
+        board_user_detail_tv_member_id.setText(vo.getMember_id()+"\n["+vo.getMember_grade()+"]");
         board_act_btn_left = getActivity().findViewById(R.id.board_act_btn_left);
         board_act_btn_right = getActivity().findViewById(R.id.board_act_btn_right);
         board_user_detail_layout_replybar = v.findViewById(R.id.board_user_detail_layout_replybar);
-
-        if (pageMode.equals("detailView")) {/* ================= 디테일뷰모드 ================= */
+        board_user_detail_relative_reply = v.findViewById(R.id.board_user_detail_relative_reply);
+        Board_User_Reply_RcView = v.findViewById(R.id.board_user_detail_recycler_detail);
+        board_user_detail_tv_board_date_create = v.findViewById(R.id.board_user_detail_tv_board_date_create);
+        board_user_detail_tv_board_class = v.findViewById(R.id.board_user_detail_tv_board_class);
+        if (pageMode.equals("detailView")) {/* ================= 글보기 모드 ================= */
             /* ================================= board_content 세팅 ========================================= */
             Glide.with(Board00DetailFg.this).load(vo.getPicture_filepath()).into(board_user_detail_imgv_profile);
             board_user_detail_edt_board_title.isEnabled();
@@ -135,25 +138,28 @@ public class Board00DetailFg extends Fragment {
             board_user_detail_edt_board_title.setText(vo.getBoard_title() + "");
             board_user_detail_edt_board_content.setText(vo.getBoard_content() + "");
             board_user_detail_tv_replycnt.setText(vo.getBoard_cnt_reply() + "");
+            board_user_detail_tv_board_date_create.setText(vo.getBoard_date_create()+"");
+            board_user_detail_tv_board_class.setText(vo.getBoard_class()+"");
             boardSN = vo.getBoard_sn();
             detail();
             /* ====================================================================================== */
 
-            /* ================================= 내 게시물일 경우에만 수정/삭제 세팅 ========================================= */
+            /* ================================= 내 게시물일 경우에만 수정/삭제 세팅, 글 수정 모드 ========================================= */
             if (vo.getMember_id().equals(Logined.member_id)) {
                 board_user_detail_layout_ismine = v.findViewById(R.id.board_user_detail_layout_ismine);
                 board_user_detail_linear_update = v.findViewById(R.id.board_user_detail_linear_update);
                 board_user_detail_linear_delete = v.findViewById(R.id.board_user_detail_linear_delete);
                 board_user_detail_layout_ismine.setVisibility(View.VISIBLE);
-
-
+                TextView actTitle = getActivity().findViewById(R.id.board_act_tv_title);
 
                 board_user_detail_linear_update.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(context, "수정 눌림", Toast.LENGTH_SHORT).show();
                         writeMode();
-
+                        board_user_detail_relative_reply.setVisibility(View.GONE);
+                        Board_User_Reply_RcView.setVisibility(View.GONE);
+                        actTitle.setText("글 수정");
 
                     }
                 });
@@ -173,18 +179,31 @@ public class Board00DetailFg extends Fragment {
                 board_act_btn_left.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(context, "눌렸음", Toast.LENGTH_SHORT).show();
+                        manager.beginTransaction().replace(R.id.board_container_top, new Board00DetailFg(context, manager, vo)).commit(); //자기 자신을 불러서 현재 화면을 새로고침 한다는 뜻ㅎ
+                        viewMode();
+                        actTitle.setText("글 상세보기");
+
                     }
                 });
                 board_act_btn_right.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(context, "눌렸음", Toast.LENGTH_SHORT).show();
+                        vo.setBoard_content(board_user_detail_edt_board_content.getText()+"");
+                        if (board_update(vo) > 0) {
+                            manager.beginTransaction().replace(R.id.board_container_top, new Board00DetailFg(context, manager, vo)).commit(); //자기 자신을 불러서 현재 화면을 새로고침 한다는 뜻ㅎ
+                            viewMode();
+                            actTitle.setText("글 상세보기");
+
+                        } else {
+                            Toast.makeText(context, "잠시후 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
+
+
             }
+            /* ================================================================================================== */
             /* ===================================== DB댓글조회 및 어댑터 ============================== */
-            Board_User_Reply_RcView = v.findViewById(R.id.board_useR_detail_recycler_detail);
             selectReplys();
             /* ====================================================================================== */
 
@@ -234,41 +253,46 @@ public class Board00DetailFg extends Fragment {
         a01.setVisibility(View.INVISIBLE);   // view 그대로 숨기기
         a01.setVisibility(View.VISIBLE);      // view 보이기*/
             /* ========================== 프레임 레이아웃 교체 ============================= */
-               //레이아웃선언
+            //레이아웃선언
             //버튼선언
 
             viewTopBtns();
+            hideBottomBar();
+            board_user_detail_edt_board_title.setEnabled(true);
+            board_user_detail_edt_board_title.requestFocus();
+            board_user_detail_edt_board_content.setEnabled(true);
 
-
+            board_user_detail_relative_reply.setVisibility(View.GONE);
 
             /* ========================================================================== */
+            board_act_btn_left.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getActivity(), "취소눌림", Toast.LENGTH_SHORT).show();
+                    getActivity().finish();
+                }
+            });
             board_act_btn_right.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(getActivity(), "확인눌림", Toast.LENGTH_SHORT).show();
                     vo.setBoard_title(board_user_detail_edt_board_title.getText() + "");
-                    vo.setBoard_title(board_user_detail_edt_board_content.getText() + "");
+                    vo.setBoard_content(board_user_detail_edt_board_content.getText() + "");
                     int succ = board_insert(vo);
                     if (succ > 0) {
                         Toast.makeText(getActivity(), "등록성공", Toast.LENGTH_SHORT).show();
-                        manager.popBackStack();
+                        getActivity().finish();
+//                        manager.popBackStack();
                     } else {
                         Toast.makeText(getActivity(), "등록실패", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-            board_act_btn_left.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getActivity(), "취소눌림", Toast.LENGTH_SHORT).show();
-                }
-            });
 
 
-
-        }
+        }//==========================================================================
         return v;
-    }//onCreateView
+    }//===========================================onCreateView
 
     @Override
     public void onResume() {
@@ -311,7 +335,7 @@ public class Board00DetailFg extends Fragment {
     /* =================================== DB insert========================================== */
     public int board_insert(BoardCommonVO vo) {
         int succ = 0;
-        commonAsk = new CommonAsk("android/cmh/board_insert");
+        commonAsk = new CommonAsk("android/cmh/board_insert/");
         commonAsk.params.add(new CommonAskParam("vo", gson.toJson(vo)));
         //파일은 안주므로 주석  commonAsk.fileParams.add(new CommonAskParam("file", img_filepath));
         InputStream in = CommonMethod.excuteAsk(commonAsk);
@@ -322,7 +346,23 @@ public class Board00DetailFg extends Fragment {
             e.printStackTrace();
         }
         return succ;
-    }
+    }//==================================================================================
+
+    /* =================================== DB update========================================== */
+    public int board_update(BoardCommonVO vo) {
+        int succ = 0;
+        commonAsk = new CommonAsk("android/cmh/board_update/");
+        commonAsk.params.add(new CommonAskParam("vo", gson.toJson(vo)));
+        //파일은 안주므로 주석  commonAsk.fileParams.add(new CommonAskParam("file", img_filepath));
+        InputStream in = CommonMethod.excuteAsk(commonAsk);
+
+        try {
+            succ = gson.fromJson(new InputStreamReader(in), Integer.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return succ;
+    }//==================================================================================
 
     /* =============================================================== */
     public void getLikeCount() {
@@ -441,7 +481,8 @@ public class Board00DetailFg extends Fragment {
         board_act_btn_left.setVisibility(View.VISIBLE);
         board_act_btn_right.setVisibility(View.VISIBLE);
     }
-    public void viewDetailFunctions(){
+
+    public void viewDetailFunctions() {
         board_user_detail_layout_ismine.setVisibility(View.VISIBLE);
     }
 
@@ -453,7 +494,8 @@ public class Board00DetailFg extends Fragment {
         board_act_btn_left.setVisibility(View.GONE);
         board_act_btn_right.setVisibility(View.GONE);
     }
-    public void hideDetailFunctions(){
+
+    public void hideDetailFunctions() {
         board_user_detail_layout_ismine.setVisibility(View.GONE);
 
     }
@@ -473,7 +515,8 @@ public class Board00DetailFg extends Fragment {
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
     }
-    public void viewMode(){
+
+    public void viewMode() {
         hideTopBtns();
         viewBottomBar();
         viewDetailFunctions();
