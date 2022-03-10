@@ -11,4 +11,8 @@
     <color name="item">#1B4656</color>
     <color name="colorTextDark">#1A1C1F</color>
     <color name="old_main_color">#bdedff</color>
+    <color name="cmh_red">#FF3232</color>
+    <color name="cmh_blue">#6464FF</color>
+    <color name="cmh_default">#808080</color>
+    <color name="cmh_board">#FF2E841B</color>
 </resources>

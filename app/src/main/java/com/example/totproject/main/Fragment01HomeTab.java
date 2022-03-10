@@ -1,14 +1,12 @@
 package com.example.totproject.main;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,7 +22,6 @@ import com.example.totproject.common.CommonAskParam;
 import com.example.totproject.common.CommonMethod;
 import com.example.totproject.common.VO.BoardCommonVO;
 import com.example.totproject.main.Adapter.MainTabAdapter_big;
-
 import com.example.totproject.main.Adapter.MainTabAdapter_small_mbti;
 import com.example.totproject.main.Adapter.MainTabAdapter_small_xy;
 import com.google.gson.Gson;

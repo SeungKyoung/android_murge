@@ -1,12 +1,5 @@
 package com.example.totproject.common.statics;
 
-import android.content.SharedPreferences;
-
-import androidx.annotation.Nullable;
-
-import java.util.Map;
-import java.util.Set;
-
 public class Logined {
     public static boolean isLogined = false;
     public static String member_id;

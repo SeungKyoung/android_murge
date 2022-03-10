@@ -16,7 +16,6 @@ import com.example.totproject.R;
 import com.example.totproject.common.CommonAsk;
 import com.example.totproject.common.CommonMethod;
 import com.example.totproject.common.VO.BoardCommonVO;
-
 import com.example.totproject.mainburgeractivity.Adapter.QnaAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

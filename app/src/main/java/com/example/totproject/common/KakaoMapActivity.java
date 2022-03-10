@@ -1,16 +1,9 @@
 package com.example.totproject.common;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -20,12 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.example.totproject.R;
-import com.example.totproject.login.TendencyActivity01;
-import com.example.totproject.party_plan.PlanCreatePlanActivity;
 
-import net.daum.mf.map.api.CalloutBalloonAdapter;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapReverseGeoCoder;
@@ -35,14 +28,14 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class KakaoMapActivity extends AppCompatActivity implements net.daum.mf.map.api.MapView.MapViewEventListener
+public class KakaoMapActivity extends AppCompatActivity implements MapView.MapViewEventListener
         , MapReverseGeoCoder.ReverseGeoCodingResultListener {
 
     MapPOIItem marker;
     TextView tv_find_location, tv_refresh_location;
     TextView tv_nowlocation;
     final int ADDR_REQ_CODE = 1001;
-    net.daum.mf.map.api.MapView mapView;
+    MapView mapView;
     MapPoint mapPoints;
     double lac=0;
     double loc=0;
@@ -50,7 +43,7 @@ public class KakaoMapActivity extends AppCompatActivity implements net.daum.mf.m
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.kakaomap_act);
-        mapView = new net.daum.mf.map.api.MapView(this);
+        mapView = new MapView(this);
 
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
         mapViewContainer.addView(mapView);
@@ -174,48 +167,48 @@ public class KakaoMapActivity extends AppCompatActivity implements net.daum.mf.m
     }
 
     @Override
-    public void onMapViewInitialized(net.daum.mf.map.api.MapView mapView) {
+    public void onMapViewInitialized(MapView mapView) {
 
     }
 
     @Override
-    public void onMapViewCenterPointMoved(net.daum.mf.map.api.MapView mapView, MapPoint mapPoint) {
+    public void onMapViewCenterPointMoved(MapView mapView, MapPoint mapPoint) {
 
     }
 
     @Override
-    public void onMapViewZoomLevelChanged(net.daum.mf.map.api.MapView mapView, int i) {
+    public void onMapViewZoomLevelChanged(MapView mapView, int i) {
 
     }
 
     @Override
-    public void onMapViewSingleTapped(net.daum.mf.map.api.MapView mapView, MapPoint mapPoint) {
+    public void onMapViewSingleTapped(MapView mapView, MapPoint mapPoint) {
         changeMarker( mapPoint);
     }
 
     @Override
-    public void onMapViewDoubleTapped(net.daum.mf.map.api.MapView mapView, MapPoint mapPoint) {
+    public void onMapViewDoubleTapped(MapView mapView, MapPoint mapPoint) {
 
     }
 
     @Override
-    public void onMapViewLongPressed(net.daum.mf.map.api.MapView mapView, MapPoint mapPoint) {
+    public void onMapViewLongPressed(MapView mapView, MapPoint mapPoint) {
 
         changeMarker( mapPoint);
     }
 
     @Override
-    public void onMapViewDragStarted(net.daum.mf.map.api.MapView mapView, MapPoint mapPoint) {
+    public void onMapViewDragStarted(MapView mapView, MapPoint mapPoint) {
 
     }
 
     @Override
-    public void onMapViewDragEnded(net.daum.mf.map.api.MapView mapView, MapPoint mapPoint) {
+    public void onMapViewDragEnded(MapView mapView, MapPoint mapPoint) {
 
     }
 
     @Override
-    public void onMapViewMoveFinished(net.daum.mf.map.api.MapView mapView, MapPoint mapPoint) {
+    public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
 
     }
 

@@ -1,9 +1,7 @@
 package com.example.totproject.category;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +24,6 @@ import com.example.totproject.common.CommonAskParam;
 import com.example.totproject.common.CommonMethod;
 import com.example.totproject.common.VO.BoardCommonVO;
 import com.example.totproject.common.VO.PictureVO;
-import com.example.totproject.common.statics.Logined;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -48,21 +45,10 @@ public class Fragment02CategoryDetail extends Fragment {
     TextView tv_reply_cnt;    // 추가
     ImageView like_ico;
     int boardSN;      // 추가
-    Fragment02CategoryDetail frag;
-
-    int reply_check = 0;
-
-    public Fragment02CategoryDetail(int reply_check) {
-        this.reply_check = reply_check;
-    }
-
-    ArrayList<ReplyVO> getList = new ArrayList<>();
-    int reply_cnt = 0;
-
     BoardCommonVO vo = new BoardCommonVO();
     //   Context dCOmtext;
 
-
+    ArrayList<BoardCommonVO> list = new ArrayList<>();
 
 
     //    Context context; ;FragmentManager manager; int getParamSn;
@@ -108,14 +94,14 @@ public class Fragment02CategoryDetail extends Fragment {
 
             }
         });
-/*        LinearLayout category_detail_linear_likes;
+        LinearLayout category_detail_linear_likes;
         category_detail_linear_likes = rootView.findViewById(R.id.category_detail_linear_likes);
         category_detail_linear_likes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setLike();
             }
-        });*/
+        });
         like_ico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,14 +115,6 @@ public class Fragment02CategoryDetail extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-
-        getReplyList();
-
-    }
-
-    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getParentFragmentManager().setFragmentResultListener("sn", this, new FragmentResultListener() {
@@ -146,28 +124,8 @@ public class Fragment02CategoryDetail extends Fragment {
                 detail();
                 contentPictureList();
                 getLikeCount();
-
-                getReplyList();
-
-
-                if(getList != null){
-                    RecAdapter adapter = new RecAdapter(getContext(), getList, frag );
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                    recyclerView.setLayoutManager(layoutManager);
-                    recyclerView.setAdapter(adapter);
-                    reply_cnt = getList.size();
-                }
-
-                if(reply_check == 1){
-                    reply_cnt +=1;
-                }
-
+                int reply_cnt = getReplyList();
                 tv_reply_cnt.setText("+"+reply_cnt);
-
-
-
-
             }
         });
     }
@@ -192,21 +150,24 @@ public class Fragment02CategoryDetail extends Fragment {
         }
     }
     /* =============================================================== */
-    public void getReplyList(){
+    public int getReplyList() {
+        int reply_cnt = 0;
         commonAsk = new CommonAsk("list_reviewpath");
         commonAsk.params.add(new CommonAskParam("board_sn", String.valueOf(boardSN)));
         InputStream in = CommonMethod.excuteAsk(commonAsk);
-        getList = gson.fromJson(new InputStreamReader(in), new TypeToken<List<ReplyVO>>(){}.getType());
-
+        ArrayList<BoardCommonVO> getList = gson.fromJson(new InputStreamReader(in), new TypeToken<List<BoardCommonVO>>() {
+        }.getType());
         try {
-            RecAdapter adapter = new RecAdapter(getContext(),getList , this);
+            RecAdapter adapter = new RecAdapter(getContext(), getList);
             LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
+            reply_cnt = getList.size();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return reply_cnt;
     }
     /* =============================================================== */
     public void contentPictureList() {
@@ -214,9 +175,9 @@ public class Fragment02CategoryDetail extends Fragment {
         commonAsk.params.add(new CommonAskParam("board_sn", String.valueOf(boardSN)));
         InputStream in = CommonMethod.excuteAsk(commonAsk);
         try {
-            ArrayList<PictureVO> pic_list = gson.fromJson(new InputStreamReader(in), new TypeToken<List<PictureVO>>() {
+            ArrayList<PictureVO> getList = gson.fromJson(new InputStreamReader(in), new TypeToken<List<PictureVO>>() {
             }.getType());
-            PagerAdapter adapter2 = new PagerAdapter(getActivity(), pic_list);
+            PagerAdapter adapter2 = new PagerAdapter(getActivity(), getList);
             pager2.setAdapter(adapter2);
         } catch (Exception e) {
             e.printStackTrace();

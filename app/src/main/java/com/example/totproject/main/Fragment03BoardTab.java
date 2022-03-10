@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.totproject.R;
-import com.example.totproject.whosepageactivity.WhosePage00Activity;
 import com.example.totproject.board.Board00Activity;
 import com.example.totproject.common.CommonAsk;
 import com.example.totproject.common.CommonAskParam;
@@ -27,6 +26,7 @@ import com.example.totproject.common.VO.MemberDTO;
 import com.example.totproject.common.statics.ChangeView;
 import com.example.totproject.common.statics.Logined;
 import com.example.totproject.main.Adapter.BoardListAdapter;
+import com.example.totproject.whosepageactivity.WhosePage00Activity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -73,7 +73,7 @@ String whose_member_id;
 
 
         /* ====================================================================================== */
-        vo.setBoard_class("notice");
+        vo.setBoard_class("user");
         vo.setList_cnt_many(999);
         /* ====================================================================================== */
         if (whatCase == null) {
@@ -143,7 +143,7 @@ String whose_member_id;
 
 
 
-            /* ============================ + 버튼ㄴ ====================================== */
+            /* ============================ + 버튼 ====================================== */
             boardtab_fab_main.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

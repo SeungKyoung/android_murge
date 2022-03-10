@@ -14,7 +14,6 @@ import com.example.totproject.R;
 import com.example.totproject.common.VO.BoardCommonVO;
 import com.example.totproject.mainburgeractivity.MainBurger01NoticeFgDetailFg;
 
-
 import java.util.ArrayList;
 import java.util.List;
 

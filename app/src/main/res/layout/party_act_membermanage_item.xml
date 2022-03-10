@@ -33,11 +33,12 @@
 
                 <ImageView
                     android:id="@+id/imgv_member_pic"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/radius"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/radius_clean"
                     android:scaleType="fitXY"
-                    android:src="@drawable/logo_tot_old" />
+                    android:src="@drawable/icon_user" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 

@@ -80,9 +80,9 @@ public class PlanInfo01Fragment extends Fragment {
         //btn_planmain_create=getActivity().findViewById(R.id.btn_planmain_create);
         //btn_planmain_update=getActivity().findViewById(R.id.btn_planmain_update);
 
-        // 계획추가 버튼사라지고, 업데이트 버튼 나오게
-        btn_planmain_create.setVisibility(View.GONE);
-        btn_planmain_update.setVisibility(View.VISIBLE);
+        // 계획추가 버튼사라지고, 업데이트 버튼 나오게     @@
+//        btn_planmain_create.setVisibility(View.GONE);
+//        btn_planmain_update.setVisibility(View.VISIBLE);
 
         planMemberListNew(planlistDTO.getPlan_sn());
 
@@ -95,7 +95,8 @@ public class PlanInfo01Fragment extends Fragment {
         grid_memberlist.setAdapter(adapter);
         setDynamicHeight(grid_memberlist);
 
-        btn_planmain_update.setText("플랜수정");
+        //@@@
+        //btn_planmain_update.setText("플랜수정");
         tv_plan_startdate.setText(planlistDTO.getPlan_startdate());
         tv_plan_starttime.setText(planlistDTO.getPlan_starttime());
         tv_plan_enddate.setText(planlistDTO.getPlan_enddate());
@@ -116,14 +117,15 @@ public class PlanInfo01Fragment extends Fragment {
             }
         });
 
-        btn_planmain_update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PlanUpdatePlanActivity.class);
-                intent.putExtra("planlistDTO",planlistDTO);
-                getActivity().startActivity(intent);
-            }
-        });
+        //@@@@@
+//        btn_planmain_update.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), PlanUpdatePlanActivity.class);
+//                intent.putExtra("planlistDTO",planlistDTO);
+//                getActivity().startActivity(intent);
+//            }
+//        });
 
 
 

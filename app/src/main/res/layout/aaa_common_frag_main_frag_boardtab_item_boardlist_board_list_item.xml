@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:id="@+id/board_user_list_item"
     android:layout_width="match_parent"
     android:layout_height="75dp"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="10dp"
-    android:weightSum="100">
+    >
 
 
     <RelativeLayout
+        android:padding="10dp"
 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
+            android:textSize="20dp"
             android:id="@+id/boardlist_item_tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,15 +31,17 @@
 
 
         <TextView
+            android:background="@drawable/ic_cmh_baseline_remove_red_eye"
             android:id="@+id/boardlist_item_tv_read"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/boardlist_item_tv_writer"
-            android:text="조회" />
+             />
 
         <TextView
+          android:paddingLeft="1dp"
             android:id="@+id/boardlist_item_tv_readcnt"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
@@ -49,14 +51,15 @@
 
         <TextView
             android:id="@+id/boardlist_item_tv_reply"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/boardlist_item_tv_readcnt"
-            android:text="댓글" />
+            android:background="@drawable/comment" />
 
         <TextView
+            android:paddingLeft="1dp"
             android:id="@+id/boardlist_item_tv_replycnt"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
@@ -78,12 +81,13 @@
             android:layout_height="25dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true" />
+
         <ImageView
             android:id="@+id/boardlist_item_imgv_icon02"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_toLeftOf="@+id/boardlist_item_imgv_icon"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/boardlist_item_imgv_icon" />
         <ImageView
             android:id="@+id/boardlist_item_imgv_icon03"
             android:layout_width="25dp"
@@ -92,5 +96,14 @@
             android:layout_alignParentBottom="true" />
     </RelativeLayout>
 
+    <ImageView
 
-</LinearLayout>
+        android:layout_marginHorizontal="15dp"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="@drawable/bottom_line"
+        />
+
+
+</FrameLayout>

@@ -27,7 +27,7 @@ public class Board00Activity extends AppCompatActivity {
         if ("write".equals(tabText)) {
             Board00DetailFg board00_detail_fg = new Board00DetailFg(Board00Activity.this, getSupportFragmentManager(), "write");
 
-            // Board01WriteFg board01WriteFg = new Board01WriteFg();
+           // Board01WriteFg board01WriteFg = new Board01WriteFg();
 //            ChangeView.viewFrament(board_container_top, board00_detail_fg, getSupportFragmentManager());
             getSupportFragmentManager().beginTransaction().replace(board_container_top, board00_detail_fg).addToBackStack(null).commit();
             board_act_tv_title.setText("글 쓰기");

@@ -22,13 +22,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.totproject.R;
+import com.example.totproject.board.Adapter.ReplyAdapter;
+import com.example.totproject.board.VO.ReplyVO;
 import com.example.totproject.common.CommonAsk;
 import com.example.totproject.common.CommonAskParam;
 import com.example.totproject.common.CommonMethod;
 import com.example.totproject.common.VO.BoardCommonVO;
 import com.example.totproject.common.statics.Logined;
-import com.example.totproject.board.Adapter.ReplyAdapter;
-import com.example.totproject.board.VO.ReplyVO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

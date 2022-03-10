@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -75,7 +74,7 @@ ImageView imgv_categorymain;
         intent.putExtra("tabcode",tabcode);
         intent.putExtra("tabText",tabText);
         startActivity(intent);
-     /*   getActivity().finish();*/
+        getActivity().finish();
 
     }
     //Fragment02CategoryGridView categoryGridView = new Fragment02CategoryGridView();

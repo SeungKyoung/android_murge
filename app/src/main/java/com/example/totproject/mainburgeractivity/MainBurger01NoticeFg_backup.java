@@ -16,7 +16,6 @@ import com.example.totproject.category.Fragment02CategoryDetail;
 import com.example.totproject.common.VO.BoardCommonVO;
 import com.example.totproject.mainburgeractivity.Adapter.NoticeAdapter;
 
-
 import java.util.ArrayList;
 
 public class MainBurger01NoticeFg_backup extends Fragment {
@@ -30,7 +29,7 @@ public class MainBurger01NoticeFg_backup extends Fragment {
         public void onClick(View v) {
             BoardCommonVO vo = new BoardCommonVO();
 
-            Fragment02CategoryDetail categoryDetail = new Fragment02CategoryDetail(0);
+            Fragment02CategoryDetail categoryDetail = new Fragment02CategoryDetail();
             getFragmentManager().beginTransaction().replace(R.id.cate_container, categoryDetail).commit();
             Bundle bundle = new Bundle();
             bundle.putString("sn", vo.getBoard_sn() + "");

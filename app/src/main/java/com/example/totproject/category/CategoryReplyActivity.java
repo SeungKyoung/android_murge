@@ -23,8 +23,6 @@ import com.example.totproject.common.CommonAsk;
 import com.example.totproject.common.CommonAskParam;
 import com.example.totproject.common.CommonMethod;
 import com.example.totproject.common.VO.BoardCommonVO;
-import com.example.totproject.common.statics.Logined;
-import com.example.totproject.main.MainActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -34,10 +32,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryReplyActivity extends AppCompatActivity {
-    ImageView  category_img_back;
+    ImageView  category_reply_back;
     EditText category_reply_edt;
     Button category_reply_submit;
-    ArrayList<ReplyVO> list = new ArrayList<>();
+    ArrayList<BoardCommonVO> list = new ArrayList<>();
     RecyclerView image_recyler;
     ReplyAdapter replyAdapter;
     final int MAXIMAGE = 3;
@@ -52,9 +50,9 @@ public class CategoryReplyActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
-        category_img_back = findViewById(R.id.category_img_back);
+        category_reply_back = findViewById(R.id.category_reply_back);
 
-        category_img_back.setOnClickListener(new View.OnClickListener() {
+        category_reply_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CategoryReplyActivity.this.finish();
@@ -77,9 +75,9 @@ public class CategoryReplyActivity extends AppCompatActivity {
 
         String content = category_reply_edt.getText()+"";
 
-        ReplyVO vo = new ReplyVO();
+        BoardCommonVO vo = new BoardCommonVO();
         vo.setBoard_sn(boardSN);
-        vo.setReply_content(content);
+        vo.setBoard_content(content);
 
         /*vo.setMember_id("ChaMinHwan");
         vo.setBoard_title("갱");
@@ -115,8 +113,7 @@ public class CategoryReplyActivity extends AppCompatActivity {
                     Toast.makeText(CategoryReplyActivity.this,"내용을 입력하세요.",Toast.LENGTH_SHORT).show();
                 }else{
                     reply_insert();
-                    finish();//인텐트 종료
-
+                    finish();
                 }
             }
         });
@@ -133,8 +130,6 @@ public class CategoryReplyActivity extends AppCompatActivity {
             //img_filepath = galleryUri;
             replyAdapter.addImage(img_filepath);
         }
-
-
 
 
         /*Uri imageUri = data.getData();
@@ -168,9 +163,9 @@ public class CategoryReplyActivity extends AppCompatActivity {
     Gson gson = new Gson();
     //CategoryVO vo = new CategoryVO();
 
-    public ReplyVO reply_insert() {
-        ReplyVO requestVO = new ReplyVO();
-        ReplyVO responseVO = null;
+    public BoardCommonVO reply_insert() {
+        BoardCommonVO requestVO = new BoardCommonVO();
+        BoardCommonVO responseVO = null;
 
         String category_reply_edt_text = category_reply_edt.getText().toString();
 
@@ -178,13 +173,15 @@ public class CategoryReplyActivity extends AppCompatActivity {
         int replysn = bundle.getInt("sn");
 
         requestVO.setBoard_sn(replysn);*/
-        requestVO.setReply_content(category_reply_edt_text);
+        requestVO.setBoard_content(category_reply_edt_text);
         requestVO.setPicture_file_count(replyAdapter.getItemCount());
-        requestVO.setMember_id(Logined.member_id);
+        requestVO.setBoard_title("title");
+        requestVO.setBoard_class("category");
+        requestVO.setMember_id("1111");
         requestVO.setBoard_sn(boardSN);
         commonAsk = new CommonAsk("category_reply");
 
-        commonAsk.params.add(new CommonAskParam("reply", gson.toJson(requestVO)));
+        commonAsk.params.add(new CommonAskParam("category", gson.toJson(requestVO)));
         for (int i = 0; i < replyAdapter.getItemCount();i ++ ){
             commonAsk.fileParams.add(new CommonAskParam("file"+i, replyAdapter.getList().get(i)));
         }
@@ -194,7 +191,7 @@ public class CategoryReplyActivity extends AppCompatActivity {
 
        // String result = gson.fromJson(new InputStreamReader(in) , String.class);
         try {
-            responseVO = gson.fromJson(new InputStreamReader(in), new TypeToken<List<ReplyVO>>() {
+            responseVO = gson.fromJson(new InputStreamReader(in), new TypeToken<List<BoardCommonVO>>() {
             }.getType());
         } catch (Exception e) {
             e.printStackTrace();

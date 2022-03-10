@@ -1,6 +1,7 @@
 package com.example.totproject.main.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.totproject.R;
+import com.example.totproject.category.CategoryMainActivity;
 import com.example.totproject.common.VO.BoardCommonVO;
-import com.example.totproject.mainburgeractivity.MainBurger01NoticeFgDetailFg;
 
 import java.util.ArrayList;
 
@@ -69,43 +70,44 @@ public class MainTabAdapter_big extends RecyclerView.Adapter<MainTabAdapter_big.
 
     //1. RecyclerView.ViewHolder 상속을 받은 클래스 ViewHolder를 만들어줌
     public class Viewholder extends RecyclerView.ViewHolder {
-        ImageView hometab_img, hometab_img_like, hometab_img_comment;
-        TextView hometab_tv_title, hometab_tv_like, hometab_tv_comment; //xml에 있는 위젯들을 전역변수로 선언.
+        ImageView hometab_big_img, hometab_big_img_like, hometab_big_img_comment;
+        TextView hometab_big_tv_title, hometab_big_tv_like, hometab_big_tv_comment; //xml에 있는 위젯들을 전역변수로 선언.
         int board_sn;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
-            hometab_img = itemView.findViewById(R.id.hometab_big_img);
-   //         hometab_img_like = itemView.findViewById(R.id.hometab_img_like);
-     //       hometab_img_comment = itemView.findViewById(R.id.hometab_img_comment);
+            hometab_big_img = itemView.findViewById(R.id.hometab_big_img);
+   //         hometab_big_img_like = itemView.findViewById(R.id.hometab_big_img_like);
+     //       hometab_big_img_comment = itemView.findViewById(R.id.hometab_big_img_comment);
 
-            hometab_tv_title = itemView.findViewById(R.id.hometab_big_title);
-//            hometab_tv_like = itemView.findViewById(R.id.hometab_tv_like);
- //           hometab_tv_comment = itemView.findViewById(R.id.hometab_tv_comment);
+            hometab_big_tv_title = itemView.findViewById(R.id.hometab_big_tv_title);
+//            hometab_big_tv_like = itemView.findViewById(R.id.hometab_big_tv_like);
+ //           hometab_big_tv_comment = itemView.findViewById(R.id.hometab_big_tv_comment);
         }
 
         //ItemView세팅되고 나서 list <-> item.xml 연결해서 세팅하는부분
         public void bind(@NonNull Viewholder holder, int position, FragmentManager manager) {
             //내용 바꾸기 처리
-            if ( list.get(position).getPicture_filepath() != null){
-                Glide.with(context).load(list.get(position).getPicture_filepath()).into(hometab_img);
+            if ( list.get(position).getBoard_filepath() != null){
+                Glide.with(context).load(list.get(position).getBoard_filepath()).into(hometab_big_img);
             }
-            holder.hometab_tv_title.setText(list.get(position).getBoard_title() + "");
+            holder.hometab_big_tv_title.setText(list.get(position).getBoard_title() + "");
 
- //           holder.hometab_tv_like.setText(list.get(position).getBoard_cnt_like()+"");
- //           holder.hometab_tv_comment.setText(list.get(position).getBoard_cnt_reply()+"");
+ //           holder.hometab_big_tv_like.setText(list.get(position).getBoard_cnt_like()+"");
+ //           holder.hometab_big_tv_comment.setText(list.get(position).getBoard_cnt_reply()+"");
 
             holder.board_sn = list.get(position).getBoard_sn();
 
-            holder.hometab_img.setOnClickListener(new View.OnClickListener() {
+            holder.hometab_big_img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-             /*       Intent intent = new Intent(context, MainBurger01NoticeFgDetailAct.class);
-                    intent.putExtra("vo", list.get(position));
-                    context.startActivity(intent);*/
-                    MainBurger01NoticeFgDetailFg MainBurger01NoticeFgDetailAct = new MainBurger01NoticeFgDetailFg(context, manager, holder.board_sn);
-                    manager.beginTransaction().replace(R.id.mainburger_container, MainBurger01NoticeFgDetailAct).addToBackStack(null).commit();
+                    Intent intent = new Intent(context, CategoryMainActivity.class);
+                    intent.putExtra("tabcode", 4);
+                    intent.putExtra("paramSn", list.get(position).getBoard_sn());
+                    intent.putExtra("tabText", "추천 여행지");
+
+                    context.startActivity(intent);
 
                 }
             });

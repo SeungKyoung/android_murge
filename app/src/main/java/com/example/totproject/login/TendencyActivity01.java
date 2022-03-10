@@ -11,13 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.totproject.R;
-import com.example.totproject.common.CommonAskParam;
-import com.example.totproject.common.CommonMethod;
-import com.example.totproject.common.kwkCommonAsk;
 import com.example.totproject.main.MainActivity;
-import com.google.gson.Gson;
-
-import java.io.InputStream;
 
 public class TendencyActivity01 extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 

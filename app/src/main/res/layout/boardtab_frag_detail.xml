@@ -8,11 +8,27 @@
     tools:context=".board.Board00DetailFg">
 
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,19 +43,20 @@
                 android:orientation="horizontal" />
 
             <EditText
-
                 android:id="@+id/board_user_detail_edt_board_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:background="@null"
                 android:enabled="false"
-                android:text="제목"
+                android:hint="제목을 입력하세요"
+                android:textColor="@color/black"
                 android:textSize="25dp" />
 
             <RelativeLayout
+                android:paddingHorizontal="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bottom_line"
                 android:paddingBottom="0dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -63,35 +80,49 @@
                     <TextView
                         android:id="@+id/board_user_detail_tv_member_id"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="5dp"
-                        android:text="member_id" />
+                        android:text="member_id"
+                        android:textColor="@color/black" />
 
+                    <TextView
+                        android:id="@+id/board_user_detail_tv_board_class"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="게시판이름" />
 
                     <TextView
                         android:id="@+id/board_user_detail_tv_board_date_create"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                        android:layout_below="@id/board_user_detail_tv_member_id"
+                        android:layout_below="@id/board_user_detail_tv_board_class"
                         android:layout_alignParentEnd="true"
-                        android:layout_margin="5dp"
                         android:layout_marginStart="5dp"
 
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         android:text="0000/00/00" />
+
+
                 </RelativeLayout>
 
             </RelativeLayout>
 
             <RelativeLayout
+android:paddingVertical="5dp"
                 android:id="@+id/board_user_detail_layout_ismine"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:background="@drawable/bottom_line"
+                android:layout_height="wrap_content"
                 android:visibility="gone">
 
 
@@ -106,9 +137,10 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:src="@mipmap/ic_logo_tot" />
+                        android:src="@drawable/ic_cmh_baseline_edit" />
 
                     <TextView
+                        android:textColor="@color/cmh_blue"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
@@ -128,9 +160,10 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:src="@mipmap/ic_logo_tot" />
+                        android:src="@drawable/ic_cmh_baseline_delete" />
 
                     <TextView
+                        android:textColor="@color/cmh_red"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
@@ -138,19 +171,31 @@
                         android:text="삭제하기" />
                 </LinearLayout>
             </RelativeLayout>
-
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="1.5dp"
+    android:background="@drawable/top_line"
+    />
             <EditText
+                android:textColor="@color/black"
+                android:padding="10dp"
                 android:id="@+id/board_user_detail_edt_board_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@null"
                 android:enabled="false"
-                android:minHeight="100dp"
-                android:text="내용" />
+                android:gravity="top"
+                android:hint="내용을 입력하세요"
+                android:minHeight="200dp"
+                />
 
             <RelativeLayout
+                android:paddingVertical="5dp"
+                android:paddingHorizontal="10dp"
+                android:id="@+id/board_user_detail_relative_reply"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:background="@drawable/top_line"
+                android:layout_height="wrap_content"
+                android:background="@drawable/both_line"
                 android:orientation="horizontal">
 
                 <TextView
@@ -166,33 +211,43 @@
                     android:layout_height="match_parent"
                     android:layout_toRightOf="@+id/board_user_detail_tv_reply"
                     android:text="000"
-                    android:textAlignment="textEnd" />
+                    android:gravity="center_vertical"
+                    android:textAlignment="textEnd"
+                    tools:ignore="RtlCompat" />
             </RelativeLayout>
         </LinearLayout>
 
+
         <FrameLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:backgroundTint="@color/black"
             android:minHeight="300dp">
+<ImageView
+    android:layout_marginHorizontal="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:background="@drawable/top_line"
+    />
 
             <androidx.recyclerview.widget.RecyclerView
 
-                android:id="@+id/board_useR_detail_recycler_detail"
+                android:id="@+id/board_user_detail_recycler_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/boardtab_frag_detail_item_reply" />
         </FrameLayout>
     </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 
-    <LinearLayout
+<LinearLayout
         android:id="@+id/board_user_detail_layout_replybar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="bottom"
         android:layout_weight="0.000001"
-        android:background="#708090"
+        android:background="#FF2E841B"
+        android:gravity="bottom"
         android:maxHeight="100dp"
         android:minHeight="50dp">
 
@@ -215,6 +270,8 @@
 
 
                     <EditText
+                        android:paddingHorizontal="10dp"
+                        android:background="@null"
                         android:id="@+id/board_user_detail_edt_reply_input"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -226,12 +283,16 @@
 
 
                     <ImageView
+
+                        android:backgroundTint="@color/main_color"
+                        android:background="@drawable/radius"
+                        android:padding="3dp"
                         android:id="@+id/board_user_detail_img_reply_submit"
                         android:layout_width="0dp"
                         android:layout_height="37.5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:src="@mipmap/ic_logo_tot" />
+                        android:src="@drawable/icon_send" />
                 </LinearLayout>
 
 
@@ -252,6 +313,7 @@
                         android:text="000" />
 
                     <ImageView
+                        android:padding="3dp"
                         android:id="@+id/board_user_detail_img_like"
                         android:layout_width="0dp"
 
@@ -266,6 +328,7 @@
             </RelativeLayout>
 
         </FrameLayout>
+
     </LinearLayout>
 
 </LinearLayout>

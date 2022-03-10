@@ -9,30 +9,35 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="#232344"
         android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/lin_create_plan_back"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/less_than"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/ic_baseline_arrow_back_24"
+                android:backgroundTint="@color/white"
                 android:layout_margin="10dp"/>
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/edt_plan_name"
+        <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:gravity="center"
-            android:hint="* 여행 제목을 입력해주세요 "
-            android:textSize="15dp" />
+            android:text="여행 플래닝"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="20dp" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -50,13 +55,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#eeeeee"
+            android:padding="10dp"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="여행 제목은 필수 입력입니다."
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                />
+
+
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
+                android:background="@drawable/radius_clean2"
                 android:orientation="horizontal">
 
                 <TextView
@@ -64,7 +82,45 @@
                     android:layout_height="60dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text=" * 여행 출발 일자   : " />
+                    android:text=" * 여행 제목 " />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+                        <EditText
+                            android:id="@+id/edt_plan_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="필수 입력란 입니다. "
+                            android:background="@color/white"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/radius_clean"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="  여행 출발 일자   : " />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -77,7 +133,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:hint="ex) 20220318"/>
+                        android:hint="2022-03-18"/>
 
 
 
@@ -89,6 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
+                android:background="@drawable/radius_clean"
                 android:orientation="horizontal">
 
                 <TextView
@@ -96,20 +153,22 @@
                     android:layout_height="60dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text=" * 여행 출발 시각  : " />
+                    android:text="  여행 출발 시각  : " />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:gravity="center">
 
                     <EditText
                         android:id="@+id/edt_plan_starttime"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:gravity="center"
-                        android:hint="ex) 09:40"/>
+                        android:hint="09:40"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -118,6 +177,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
+                android:background="@drawable/radius_clean"
                 android:orientation="horizontal">
 
                 <TextView
@@ -125,18 +185,20 @@
                     android:layout_height="60dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text=" * 여행 복귀 일자   : " />
+                    android:text="  여행 복귀 일자   : " />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/tv_plan_enddate"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:gravity="center"
                         android:hint="ex) 20220321" />
 
@@ -147,6 +209,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
+                android:background="@drawable/radius_clean"
                 android:orientation="horizontal">
 
                 <TextView
@@ -154,18 +217,20 @@
                     android:layout_height="60dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text=" * 여행 복귀 시각    : " />
+                    android:text="  여행 복귀 시각    : " />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:gravity="center">
 
                     <EditText
                         android:id="@+id/edt_plan_endtime"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:gravity="center"
                         android:hint="ex) 19:30" />
 
@@ -176,6 +241,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
+                android:background="@drawable/radius_clean"
                 android:orientation="horizontal">
 
                 <TextView
@@ -183,23 +249,31 @@
                     android:layout_height="60dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text=" * 여행지    : " />
+                    android:text="  여행지    : " />
 
-                <EditText
-                    android:id="@+id/edt_plan_location"
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bottom_line"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"
-                    android:hint="ex) 프랑스 파리" />
+                    android:layout_height="60dp"
+                    android:gravity="center">
+
+                    <EditText
+                        android:id="@+id/edt_plan_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:hint="ex) 프랑스 파리" />
+
+                </LinearLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
+                android:background="@drawable/radius_clean"
                 android:orientation="horizontal">
 
                 <TextView
@@ -207,23 +281,30 @@
                     android:layout_height="60dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text=" * 출발지    : " />
-
-                <EditText
-                    android:id="@+id/edt_plan_startpoint"
+                    android:text="  출발지    : " />
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bottom_line"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"
-                    android:hint="ex) 농성역에서 모이기" />
+                    android:layout_height="60dp"
+                    android:gravity="center">
+                    <EditText
+                        android:id="@+id/edt_plan_startpoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:hint="ex) 농성역에서 모이기" />
+
+                </LinearLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
+                android:background="@drawable/radius_clean"
                 android:orientation="horizontal">
 
                 <TextView
@@ -231,7 +312,8 @@
                     android:layout_height="60dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text=" * 참여 멤버" />
+                    android:text="  참여 멤버"
+                    android:textStyle="bold"/>
 
 
             </LinearLayout>
@@ -240,6 +322,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="@drawable/radius_clean"
+                android:padding="20dp"
                 android:orientation="vertical">
                 <!-- ↓ plan_member_list 출력 공간-->
                 <androidx.recyclerview.widget.RecyclerView
@@ -252,9 +336,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
+                android:layout_height="60dp"
                 android:layout_margin="10dp"
-                android:background="@drawable/bottom_line"
+                android:background="@drawable/radius_clean"
                 android:orientation="horizontal">
 
                 <TextView
@@ -264,21 +348,31 @@
                     android:gravity="center"
                     android:text=" * 숙소    : " />
 
-                <EditText
-                    android:id="@+id/edt_plan_hotel"
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bottom_line"
-                    android:gravity="center"
+                    android:layout_height="60dp"
+                    android:gravity="center">
 
-                    android:hint="ex) 파리 호텔"/>
+                    <EditText
+                        android:id="@+id/edt_plan_hotel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+
+                        android:hint="ex) 파리 호텔"/>
+
+                </LinearLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <TextView
@@ -298,6 +392,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
+                android:background="@drawable/radius_clean"
                 android:orientation="horizontal">
 
                 <TextView
@@ -307,15 +402,23 @@
                     android:gravity="center"
                     android:text=" * 예상 경비    : " />
 
-                <EditText
-                    android:id="@+id/edt_plan_cost"
+
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bottom_line"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"
-                    android:hint="ex) 2400000" />
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <EditText
+                        android:id="@+id/edt_plan_cost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:hint="ex) 2400000" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
             <Button

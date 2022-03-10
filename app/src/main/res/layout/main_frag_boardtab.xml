@@ -52,7 +52,7 @@
         android:layout_marginEnd="23dp"
         android:layout_marginBottom="15dp"
         android:backgroundTint="#DEC063"
-        android:src="@drawable/ic_baseline_format_list_numbered_24"
+android:src="@drawable/ic_cmh_baseline_format_list_bulleted"
         app:fabSize="mini" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -64,18 +64,19 @@
         android:layout_marginEnd="23dp"
         android:layout_marginBottom="15dp"
         android:backgroundTint="#65C5D2"
-        android:src="@drawable/ic_baseline_playlist_add_24"
+        android:src="@drawable/ic_cmh_baseline_search"
         app:fabSize="mini" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:visibility="gone"
+
+        android:visibility="visible"
         android:id="@+id/boardtab_fab_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
 
         android:layout_margin="15dp"
-        android:backgroundTint="#9500ff"
+        android:backgroundTint="@color/cmh_board"
         android:src="@drawable/ic_baseline_add_24" />
 
 </FrameLayout>

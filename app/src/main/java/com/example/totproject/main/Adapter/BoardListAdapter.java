@@ -1,11 +1,14 @@
 package com.example.totproject.main.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,11 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.totproject.R;
-import com.example.totproject.whosepageactivity.WhosePage00Activity;
 import com.example.totproject.board.Board00Activity;
 import com.example.totproject.common.VO.BoardCommonVO;
 import com.example.totproject.common.VO.MemberDTO;
 import com.example.totproject.common.statics.Logined;
+import com.example.totproject.whosepageactivity.WhosePage00Activity;
 
 import java.util.List;
 
@@ -72,11 +75,11 @@ public class BoardListAdapter extends RecyclerView.Adapter<BoardListAdapter.View
 
     //1. RecyclerView.ViewHolder 상속을 받은 클래스 ViewHolder를 만들어줌
     public class Viewholder extends RecyclerView.ViewHolder {
-        ImageView boardlist_item_imgv_icon, boardlist_imgv_dialog_profile;
+        ImageView boardlist_item_imgv_icon, boardlist_imgv_dialog_profile, boardlist_item_imgv_icon02, boardlist_item_imgv_icon03;
         TextView boardlist_item_tv_title, boardlist_item_tv_writer, boardlist_item_tv_read, boardlist_item_tv_readcnt,
                 boardlist_item_tv_reply, boardlist_item_tv_replycnt, boardlist_item_tv_writedate; //xml에 있는 위젯들을 전역변수로 선언.
         int board_sn;
-        LinearLayout board_user_list_item;
+        FrameLayout board_user_list_item;
 
         ;
 
@@ -89,9 +92,13 @@ public class BoardListAdapter extends RecyclerView.Adapter<BoardListAdapter.View
             boardlist_item_tv_writedate = itemView.findViewById(R.id.boardlist_item_tv_writedate);
             board_user_list_item = itemView.findViewById(R.id.board_user_list_item);
             boardlist_item_imgv_icon = itemView.findViewById(R.id.boardlist_item_imgv_icon);
+            boardlist_item_imgv_icon02 = itemView.findViewById(R.id.boardlist_item_imgv_icon02);
+            boardlist_item_imgv_icon03 = itemView.findViewById(R.id.boardlist_item_imgv_icon03);
+
         }
 
         //ItemView세팅되고 나서 list <-> item.xml 연결해서 세팅하는부분
+        @SuppressLint("ResourceAsColor")
         public void bind(@NonNull Viewholder holder, int position, FragmentManager manager) {
             /* ============================== 해당 홀더 board_sn ============================== */
             holder.board_sn = list.get(position).getBoard_sn();
@@ -108,21 +115,30 @@ public class BoardListAdapter extends RecyclerView.Adapter<BoardListAdapter.View
 
 
             /* =============================== 게시물 판별 ================================= */
-            if (list.get(position).getMember_id().equals(Logined.member_id)) {  // 나의글이면 백그라운드 (임의)
-                //Glide.with(context).load(R.drawable.like).into(boardlist_item_imgv_icon);
-                holder.board_user_list_item.setBackgroundResource(R.drawable.title_theme_background);
+            if ("master".equals(list.get(position).getMember_grade())) { //master의 이름 빨갛게
+                holder.boardlist_item_tv_writer.setTextColor(R.color.cmh_red);
             } else {
-
-                holder.board_user_list_item.setBackgroundResource(R.drawable.bottom_line);
+                holder.boardlist_item_tv_writer.setTextColor(R.color.cmh_default);
+            }
+            if (list.get(position).getMember_id().equals(Logined.member_id)) {  // 내 이름 찐하게
+                holder.boardlist_item_tv_writer.setTypeface(holder.boardlist_item_tv_writer.getTypeface(), Typeface.BOLD);
+            } else {
+                holder.boardlist_item_tv_writer.setTypeface(holder.boardlist_item_tv_writer.getTypeface(), Typeface.NORMAL);
             }
 
-            if ("master".equals(list.get(position).getMember_grade())) {  // 관리자 글이면 왕관아이콘 (임의)
-                Glide.with(context).load(R.drawable.icon_crown).into(boardlist_item_imgv_icon);
-            } else if (list.get(position).getBoard_cnt_reply() > 10) {  //댓글이 10개보다 많으면 별 (임의)
+
+            if (list.get(position).getCnt_reply_recent() >= 10) {  // 최근 댓글이 10개 이상 별 (임의)
+                Glide.with(context).load(R.drawable.ic_cmh_baseline_local_fire_department).into(boardlist_item_imgv_icon03);
+            }else{
+                Glide.with(context).load(R.drawable.zzcmh_none).into(boardlist_item_imgv_icon03);
+            }
+            if (list.get(position).getCnt_likes_recent() >= 10) {  // 최근 좋아요 10개 이상 별 (임의)
                 Glide.with(context).load(R.drawable.icon_star).into(boardlist_item_imgv_icon);
-            } else {
-                Glide.with(context).load(R.drawable.ic_launcher_foreground).into(boardlist_item_imgv_icon);
+            }else{
+                Glide.with(context).load(R.drawable.zzcmh_none).into(boardlist_item_imgv_icon);
             }
+
+
             //아이콘 여러개 표시하려면 xml수정, 다른값(좋아요 수, 최근며칠간 댓글수 등) 참조하려면 mapper,VO수정 -> 말만하면 차민환이 바로가능
             //조건별 표시 변경 (관리자글이면 백그라운드 컬러 테마색 등)역시 가능 그외 말만하면 그냥 다 가능 내가 읽은게시물 표시하는것도 테이블만들면 가능
 
@@ -178,8 +194,17 @@ public class BoardListAdapter extends RecyclerView.Adapter<BoardListAdapter.View
             builder.setView(view);
             ((TextView) view.findViewById(R.id.texttitle)).setText("작성자 : " + list.get(getAdapterPosition()).getMember_id() + "");
             ((TextView) view.findViewById(R.id.textmessage)).setText("내용 미리보기\n" + list.get(getAdapterPosition()).getBoard_content() + "");
-            ((TextView) view.findViewById(R.id.btn_dialog_yes)).setText("갤로그");
+            ((TextView) view.findViewById(R.id.btn_dialog_yes)).setText("작성게시물");
             ((TextView) view.findViewById(R.id.btn_dialog_no)).setText("삭제");
+
+
+            ;
+            ;
+            if (! (list.get(getAdapterPosition()).getMember_id() + "").equals(Logined.member_id + "")) {
+                ((TextView) view.findViewById(R.id.btn_dialog_no)).setVisibility(View.GONE);
+            } else {
+                ((TextView) view.findViewById(R.id.btn_dialog_no)).setVisibility(View.VISIBLE);
+            }
 
             /* =================================== 길게눌러서 프로필사진 보기 ===================================== */
             ImageView dialog_imgv;
@@ -199,7 +224,7 @@ public class BoardListAdapter extends RecyclerView.Adapter<BoardListAdapter.View
                 @Override
                 public void onClick(View v) {
                     alertDialog.dismiss();
-                    Toast.makeText(context, "갤로그", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "작성게시물", Toast.LENGTH_SHORT).show();
                     memberDTO.setMember_id(list.get(getAdapterPosition()).getMember_id());
                     memberDTO.setPicture_filepath(list.get(getAdapterPosition()).getPicture_filepath());
                     Intent intent = new Intent(context, WhosePage00Activity.class);

@@ -1,18 +1,6 @@
 package com.example.totproject.main;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,29 +13,31 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.andremion.floatingnavigationview.FloatingNavigationView;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.bumptech.glide.Glide;
+import com.example.totproject.R;
 import com.example.totproject.common.CommonAsk;
 import com.example.totproject.common.CommonAskParam;
 import com.example.totproject.common.CommonMethod;
-import com.example.totproject.party.PartyCreateActivity;
-import com.example.totproject.party.PartyMainActivity;
-import com.example.totproject.whosepageactivity.WhosePage00Activity;
-import com.example.totproject.R;
 import com.example.totproject.common.VO.MemberDTO;
 import com.example.totproject.common.statics.Logined;
 import com.example.totproject.login.JoinActivity;
@@ -55,13 +45,12 @@ import com.example.totproject.login.LoginActivity;
 import com.example.totproject.login.SplashActivity;
 import com.example.totproject.login.TendencyActivity01;
 import com.example.totproject.mainburgeractivity.MainBurger00Activity;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.totproject.party.PartyMainActivity;
+import com.example.totproject.whosepageactivity.WhosePage00Activity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -93,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_act_main);
-        if (android.os.Build.VERSION.SDK_INT > 9) {
+        if (Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
@@ -462,7 +451,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("tabcode", tabcode);
         // intent.putExtra("tabText",tabText);
         startActivity(intent);
-       /* finish();*/
+        finish();
     }
 
     public void ChangeActivity(Class nextAct, int tabcode, String tabText) {
@@ -470,12 +459,13 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("tabcode", tabcode);
         intent.putExtra("tabText", tabText);
         startActivity(intent);
-
+        finish();
     }
 
     public void ChangeActivity(Class nextClass) {
         Intent intent = new Intent(MainActivity.this, nextClass);
         startActivity(intent);
+        finish();
     }
 
     public void goSplash() {
@@ -504,7 +494,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-                   /* finish();*/
+                    finish();
                 }
             } else {
                 manager.popBackStack();

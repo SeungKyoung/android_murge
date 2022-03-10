@@ -8,52 +8,50 @@
     tools:context=".board.Board00Activity">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#708090">
+        android:background="#FF2E841B">
 
         <Button
             android:id="@+id/board_act_btn_left"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:background="@drawable/icon_ox_x"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/board_act_btn_right"
+            android:background="@drawable/ic_cmh_baseline_cancel"
             android:visibility="gone" />
 
         <TextView
             android:id="@+id/board_act_tv_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_marginHorizontal="10dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:text="board activity"
-            android:textSize="30dp" />
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/board_act_btn_right"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:background="@drawable/icon_ox_o"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_cmh_baseline_check_circle"
             android:visibility="gone" />
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <FrameLayout
 
         android:id="@+id/board_container_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#888888" />
+        android:layout_height="match_parent" />
 
     <FrameLayout
         android:id="@+id/board_container_bottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#999999" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

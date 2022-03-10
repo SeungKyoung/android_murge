@@ -1,8 +1,6 @@
 package com.example.totproject.chat;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +15,6 @@ import com.bumptech.glide.Glide;
 import com.example.totproject.R;
 import com.example.totproject.common.statics.Logined;
 import com.example.totproject.party.PartyMemberListDTO;
-
 
 import java.util.List;
 

@@ -1,24 +1,17 @@
 package com.example.totproject.common;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDialog;
-import androidx.core.content.ContextCompat;
-
-import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.totproject.R;
 import com.example.totproject.party_plan.PlanCreatePlanActivity;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
 public class DatePickerActivity extends AppCompatActivity {

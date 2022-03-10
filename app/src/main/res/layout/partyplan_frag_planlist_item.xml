@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp">
@@ -9,20 +10,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@drawable/radius">
+        android:background="@drawable/radius_clean">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="100dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:gravity="center">
-            <ImageView
-                android:id="@+id/leader_pic"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardBackgroundView"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/ic_launcher_foreground"
-                android:scaleType="fitXY"
-                />
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text">
+
+                <ImageView
+                    android:id="@+id/leader_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/radius_clean"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icon_user" />
+            </androidx.cardview.widget.CardView>
             <TextView
                 android:id="@+id/tv_plan_writer"
                 android:layout_width="wrap_content"
@@ -42,7 +54,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="여행 계획 1번"
-                android:textSize="14dp"
+                android:textSize="16dp"
+                android:textColor="@color/black"
                 android:layout_gravity="center"/>
         </LinearLayout>
 

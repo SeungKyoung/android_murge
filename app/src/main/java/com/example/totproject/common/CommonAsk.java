@@ -26,7 +26,7 @@ public class CommonAsk extends AsyncTask<String,String,InputStream> {
     HttpResponse httpResponse;
     HttpEntity httpEntity;
     MultipartEntityBuilder builder;//파라메터,파일 등등을 보내기위한 객체
-    public final String IP = "http://192.168.0.195";
+    public final String IP = "http://192.168.0.62";
     final String HTTPIP = IP;//IP
     //
     //

@@ -11,18 +11,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.totproject.R;
-import com.example.totproject.common.CommonAsk;
 import com.example.totproject.common.CommonAskParam;
 import com.example.totproject.common.CommonMethod;
 import com.example.totproject.common.kwkCommonAsk;
 import com.example.totproject.common.statics.Logined;
 import com.example.totproject.main.MainActivity;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Type;
 
 public class TendencyActivity02 extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
     RadioGroup mbti_buddy, mbti_family, mbti_price, mbti_sd, mbti_io;

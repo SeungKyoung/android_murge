@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.totproject.R;
+import com.example.totproject.board.Adapter.ReplyAdapter;
+import com.example.totproject.board.VO.ReplyVO;
 import com.example.totproject.common.CommonAsk;
 import com.example.totproject.common.CommonAskParam;
 import com.example.totproject.common.CommonMethod;
 import com.example.totproject.common.VO.BoardCommonVO;
-import com.example.totproject.board.Adapter.ReplyAdapter;
-import com.example.totproject.board.VO.ReplyVO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -90,7 +90,7 @@ public class Fragment03BoardTab_Detail_backup extends Fragment {
 
         /* ===================================== DB댓글조회 및 어댑터 ============================== */
         selectReply(vo.getBoard_sn());
-        Board_User_Reply_RcView = v.findViewById(R.id.board_useR_detail_recycler_detail);
+        Board_User_Reply_RcView = v.findViewById(R.id.board_user_detail_recycler_detail);
 
         LinearLayoutManager lmanager = new LinearLayoutManager(
                 context, RecyclerView.VERTICAL, false);

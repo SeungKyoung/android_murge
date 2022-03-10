@@ -38,6 +38,7 @@ public class MainBurger02ServiceFg extends Fragment {
             public void onClick(View v) {
                 testToast();
                 changeFragment(new MainBurger02ServiceFg01QnAFg(context,manager));
+
             }
         });
 

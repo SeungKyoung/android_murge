@@ -1,14 +1,13 @@
 package com.example.totproject.common.sharedpreferences;
 
 import android.content.Context;
-
 import android.content.SharedPreferences;
 
 /**
  * 데이터 저장 및 로드 클래스
  */
 
- class PreferenceManager   {
+ class PreferenceManager {
 
     public static final String PREFERENCES_NAME = "rebuild_preference";
 

@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import com.example.totproject.R;
 
@@ -68,7 +67,6 @@ public class CategoryMainActivity extends AppCompatActivity {
         });
 
 
-
         /*category_img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,12 +105,4 @@ public class CategoryMainActivity extends AppCompatActivity {
 
         gridView.setAdapter(adapter);*/
     }
-
-    public void changFrag(Fragment frag){
-        getSupportFragmentManager().beginTransaction().replace(R.id.cate_container, frag).commit();
-    }
-
-
-
-
 }

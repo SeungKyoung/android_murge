@@ -14,7 +14,6 @@ import com.example.totproject.R;
 import com.example.totproject.common.VO.PictureVO;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PagerAdapter extends RecyclerView.Adapter<PagerAdapter.ViewHolder> {
 

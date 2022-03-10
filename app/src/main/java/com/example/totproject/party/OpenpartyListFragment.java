@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.totproject.R;
 import com.example.totproject.common.CommonAsk;
-import com.example.totproject.common.CommonAskParam;
 import com.example.totproject.common.CommonMethod;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

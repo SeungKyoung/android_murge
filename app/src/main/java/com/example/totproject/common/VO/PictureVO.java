@@ -2,7 +2,7 @@ package com.example.totproject.common.VO;
 
 public class PictureVO {
 	String picture_filepath;
-	int board_sn, reply_sn;
+	int board_sn;
 	String member_id;
 	public String getPicture_filepath() {
 		return picture_filepath;
@@ -27,12 +27,5 @@ public class PictureVO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-
-	public int getReply_sn() {
-		return reply_sn;
-	}
-
-	public void setReply_sn(int reply_sn) {
-		this.reply_sn = reply_sn;
-	}
+	
 }
