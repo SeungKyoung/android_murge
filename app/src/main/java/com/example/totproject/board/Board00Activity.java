@@ -27,8 +27,10 @@ public class Board00Activity extends AppCompatActivity {
         if ("write".equals(tabText)) {
             Board00DetailFg board00_detail_fg = new Board00DetailFg(Board00Activity.this, getSupportFragmentManager(), "write");
 
-           // Board01WriteFg board01WriteFg = new Board01WriteFg();
-            ChangeView.viewFrament(board_container_top, board00_detail_fg, getSupportFragmentManager());
+            // Board01WriteFg board01WriteFg = new Board01WriteFg();
+//            ChangeView.viewFrament(board_container_top, board00_detail_fg, getSupportFragmentManager());
+            getSupportFragmentManager().beginTransaction().replace(board_container_top, board00_detail_fg).addToBackStack(null).commit();
+            board_act_tv_title.setText("글 쓰기");
         } else if ("search".equals(tabText)) {
             Board01WriteFg board01SearchFg = new Board01WriteFg();
             ChangeView.viewFrament(board_container_top, board01SearchFg, getSupportFragmentManager());
@@ -36,7 +38,7 @@ public class Board00Activity extends AppCompatActivity {
             BoardCommonVO vo = (BoardCommonVO) getIntent.getSerializableExtra("vo");
             Board00DetailFg board00_detail_fg = new Board00DetailFg(Board00Activity.this, getSupportFragmentManager(), vo);
             ChangeView.viewFrament(board_container_top, board00_detail_fg, getSupportFragmentManager());
-
+            board_act_tv_title.setText("글 상세보기");
         }
 
     }//oncreate()
